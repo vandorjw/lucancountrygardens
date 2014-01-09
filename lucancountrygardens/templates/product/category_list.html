@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}My Notes{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index,follow">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-8">
+      {% if object_list %}  
+      {% for item in object_list %}
+   
+        <h3>{{item.name}}</h3>
+        <p>{{item.short_content}}</p>
+        <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
+        
+      {% endfor %}
+      {% endif %} 
+      </div>
+
+    </div><!-- End Row -->
+</div><!-- End Container -->
+
+{% endblock content %}
+

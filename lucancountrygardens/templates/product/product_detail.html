@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ product }}{% endblock %}
+{% block meta_description %}{{ product.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ product.meta_description }}{% endblock %}
+
+{% block extra_head %}
+  <meta name="robots" content="index,follow">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1>{{product}}</h1>
+  </div>
+
+  {% for section in sections %}
+    <div class="row">
+      <div class="col-md-12">
+        <h4>{{section.section_header}}</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <p>{{section.product_section}}</p>
+      </div>
+    </div>
+  {% endfor %}				
+</div>
+{% endblock %}
+
+

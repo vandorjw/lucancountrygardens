@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Joost Vandorp" >
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'dist/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'dist/css/sticky-footer-navbar.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    {% block extra_head %}
+    {% endblock extra_head %}
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+        <a class="navbar-brand" href="{% url 'product:front_page' %}">home</a>
+        <a class="navbar-brand pull-right" href="{% url 'product:front_page' %}">contact</a>
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Powered by: 
+          <a href="http://fedoraproject.org/">Fedora</a>,
+          <a href="http://wiki.nginx.org/Main">nginx</a>, and
+          <a href="http://uwsgi-docs.readthedocs.org/en/latest/index.html">uwsgi</a>.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
+
