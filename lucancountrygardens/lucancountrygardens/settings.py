@@ -13,7 +13,7 @@ from .secrets import PROJECT_DATABASE_HOST
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['lucancountrygardens.ca',]
 
@@ -33,6 +33,8 @@ EXTERNAL_APPS = (
 
 LOCAL_APPS = (
     'product',
+    'gallery',
+    'about',
 )
 
 INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS

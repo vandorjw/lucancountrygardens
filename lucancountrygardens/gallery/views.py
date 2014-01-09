@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views import generic
+from gallery.models import Gallery
 
-# Create your views here.
+class GalleryDetailView(generic.DetailView):
+    model = Gallery
+
+class GalleryListView(generic.ListView):
+    queryset = gallery.objects.filter(is_active=True)
+
