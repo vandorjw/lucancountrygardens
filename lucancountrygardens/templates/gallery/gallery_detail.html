@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ about }}{% endblock %}
+{% block meta_description %}{{ about.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ about.meta_description }}{% endblock %}
+
+{% block extra_head %}
+  <meta name="robots" content="index,follow">
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <div class="container">
+    <div class="col-md-12">
+
+      <h3>{{about.name}}</h3>
+
+ 
+
+    </div>
+
+  </div>
+</div>	
+
+{% for section in sections %}
+<div class="row">
+    <div class="col-md-12">
+      <h4>{{section.section_header}}</h4>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-8 {% cycle 'pull-right' 'pull-left' %}">
+      <p>{{section.article_section}}</p>
+    </div>
+
+    <div class="col-md-4 {% cycle 'pull-left' 'pull-right' %}">
+      {{ section.image }}
+    </div>
+
+</div>
+
+{% endfor %}				
+
+{% endblock %}
+

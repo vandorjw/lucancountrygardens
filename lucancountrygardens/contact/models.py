@@ -8,6 +8,7 @@ class OperationHours(models.Model):
     class Meta:
         app_label = 'contact'
         ordering = ['display_order']
+        verbose_name_plural = "Operation Hours"
 
     def __str__(self):
        return self.days

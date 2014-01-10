@@ -14,7 +14,7 @@ from .secrets import PROJECT_DATABASE_HOST
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DEBUG = True
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['lucancountrygardens.ca',]
 
 EXTERNAL_APPS = (
@@ -25,6 +25,7 @@ EXTERNAL_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'djangosecure',
     'haystack',
     'django_extensions',
     'crispy_forms',

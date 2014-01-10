@@ -15,6 +15,7 @@ class About(models.Model):
     class Meta:
         app_label = 'about'
         ordering = ['sort','name']
+        verbose_name_plural = "about"
 
     def __str__(self):
         return self.name

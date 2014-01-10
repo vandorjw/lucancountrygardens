@@ -3,9 +3,9 @@ from product.views import CategoryListView, CategoryDetailView, ProductDetailVie
 
 urlpatterns = patterns('',
     url(
-        r"^$", 
+        r"^categories/$", 
         CategoryListView.as_view(), 
-        name="front_page"
+        name="category_list"
     ),
     url(
         r"^product/(?P<slug>[-\w]+)/$",

@@ -8,10 +8,12 @@ class Gallery(models.Model):
     meta_description = models.CharField( max_length=255, blank=True )
     meta_keywords = models.CharField( max_length=255, blank=True )
     is_active = models.BooleanField( default=True )
+    is_featured = models.BooleanField( default=False )
 
     class Meta:
         app_label = 'gallery'
         ordering = ['name']
+        verbose_name_plural = "galleries"
 
     def __str__(self):
         return self.name

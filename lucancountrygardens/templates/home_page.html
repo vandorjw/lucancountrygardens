@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index,follow">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-4">
+      {% if root_categories %}
+        <h2><a href="{% url 'product:category_list' %}">Categories</a></h2>
+        {% for item in root_categories %}
+          <h3>{{item.name}}</h3>
+          <p>{{item.short_content}}</p>
+          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
+        {% endfor %}
+      {% endif %} 
+      </div>
+
+      <div class="col-md-4">
+      {% if about_pages %}
+        <h2><a href="{% url 'about:about_list' %}">About</a></h2>
+        {% for item in about_pages %}
+          <h3>{{item.name}}</h3>
+          <p>{{item.short_content}}</p>
+          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
+        {% endfor %}
+      {% endif %} 
+      </div>
+
+      <div class="col-md-4">
+      {% if galleries %}
+        <h2><a href="{% url 'gallery:gallery_list' %}">Galleries</a></h2>
+        {% for item in galleries %}
+          <h3>{{item.name}}</h3>
+          <p>{{item.short_content}}</p>
+          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
+        {% endfor %}
+      {% endif %} 
+      </div>
+
+    </div><!-- End Row -->
+</div><!-- End Container -->
+
+{% endblock content %}
+

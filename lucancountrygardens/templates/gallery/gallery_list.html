@@ -10,9 +10,8 @@
 
 <div class="container">
 {% if object_list %}  
-    {% for row in object_list %}
+    {% for item in object_list %}
         <div class="row">
-        {% for item in row %}
             <div class="col-md-3">
                 <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
                 <div class="panel panel-default">
@@ -27,7 +26,6 @@
                 </div>
                 </a>
             </div>
-        {% endfor %}
         </div>
     {% endfor %}
 {% endif %}

@@ -15,6 +15,7 @@ class Category(models.Model):
     class Meta:
         app_label = 'product'
         ordering = ['sort']
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return self.name
@@ -49,6 +50,7 @@ class Product(models.Model):
     meta_description = models.CharField( max_length=255, blank=True )
     meta_keywords = models.CharField( max_length=255, blank=True )                
     is_active = models.BooleanField( default=True )    
+    is_featured = models.BooleanField( default=False )    
     price = models.DecimalField( max_digits=8, decimal_places=2 )
     description = models.TextField( blank=True)
 
