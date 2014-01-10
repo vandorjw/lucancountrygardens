@@ -7,6 +7,10 @@ from .secrets import PROJECT_DATABASE_NAME
 from .secrets import PROJECT_DATABASE_USER
 from .secrets import PROJECT_DATABASE_PASS
 from .secrets import PROJECT_DATABASE_HOST
+from .secrets import PROJECT_EMAIL_HOST
+from .secrets import PROJECT_EMAIL_USER
+from .secrets import PROJECT_EMAIL_PORT
+from .secrets import PROJECT_EMAIL_PASS
 #
 # END PROJECT SECRETS
 #
@@ -65,6 +69,20 @@ DATABASES = {
         'PORT': '5432',
     }                                             
 }
+
+
+########## EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_PASSWORD = PROJECT_EMAIL_PASS
+EMAIL_HOST_USER = PROJECT_EMAIL_USER
+EMAIL_HOST = PROJECT_EMAIL_HOST
+EMAIL_PORT = PROJECT_EMAIL_PORT
+EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
+########## END EMAIL CONFIGURATION
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
