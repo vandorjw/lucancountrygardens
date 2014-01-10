@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index,follow">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% if object_list %}  
+    {% for row in object_list %}
+        <div class="row">
+        {% for item in row %}
+            <div class="col-md-3">
+                <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="text-center">{{item.name}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        {% with item.galleryimage_set.all|first as image %}
+                            <img src="{{ image }}" title="{{ item.name }}" alt="{{ item.name }}" />
+                        {% endwith %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+{% endblock %}

@@ -55,6 +55,7 @@ lib64/
 parts/
 sdist/
 var/
+whoosh_index
 *.egg-info/
 .installed.cfg
 *.egg

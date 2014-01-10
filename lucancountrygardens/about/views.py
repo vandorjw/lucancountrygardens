@@ -6,7 +6,7 @@ class AboutDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AboutDetailView, self).get_context_data(**kwargs)
-        context['sections'] = self.object.articlesection_set.filter(is_active=True)
+        context['sections'] = self.object.articlesection_set.all()
         return context
     
 

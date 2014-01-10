@@ -13,7 +13,7 @@ from .secrets import PROJECT_DATABASE_HOST
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['lucancountrygardens.ca',]
 
@@ -25,6 +25,7 @@ EXTERNAL_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'haystack',
     'django_extensions',
     'crispy_forms',
     'tinymce',
@@ -35,6 +36,7 @@ LOCAL_APPS = (
     'product',
     'gallery',
     'about',
+    'contact',
 )
 
 INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS
@@ -112,4 +114,11 @@ SECRET_KEY = PROJECT_SECRET_KEY
 
 TINYMCE_DEFAULT_CONFIG = {
     'theme': "advanced",
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
 }

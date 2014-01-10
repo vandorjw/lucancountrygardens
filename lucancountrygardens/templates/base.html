@@ -34,10 +34,27 @@
       <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-        <a class="navbar-brand" href="{% url 'product:front_page' %}">home</a>
-        <a class="navbar-brand pull-right" href="{% url 'product:front_page' %}">contact</a>
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xm-4">
+              <a class="navbar-brand" href="{% url 'product:front_page' %}">home</a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <form role="search" action="/search">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="q" id="q">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <a class="navbar-brand pull-right" href="{% url 'product:front_page' %}">contact</a>
+            </div>
+          </div>
         </div>
       </div>
+
 
       <!-- Begin page content -->
       {% block content %}
