@@ -13,23 +13,35 @@
 {% block content %}
 <div class="container">
   <div class="page-header">
-    <h1>{{category}}</h1>
+    <h4>Return to: <a href="{% url 'product:category_list' %}">Product Index</a></h4>
   </div>
 <div class="row">
 <h3>SubCategories</h3>
+
 {% for subcat in subcategories %}
-<a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
-{% endfor %}
+  {% if forloop.first %}
+    <p><a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
+  {% elif forloop.last %}
+    <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
+  {% else %}
+    <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>,
+  {% endif %}
+{% endfor %}</p>
 </div>
 
 <div class="row">
 <h4>Products</h4>
 {% for product in category_products %}
-<a href="{{product.get_absolute_url}}">{{product}}</a>
+<div class="col-md-3">
+  {% with product.productimage_set.all|first as im %}
+    <img class="" src="{{ im.url }}" title="{{ product.name }}" alt="{{ product.name }}" />
+  {% endwith %}
+  <p><a href="{{product.get_absolute_url}}">{{product}}</a></p>
+</div>
+
 {% endfor %}
 </div>
 
 </div>
 {% endblock %}
-
 

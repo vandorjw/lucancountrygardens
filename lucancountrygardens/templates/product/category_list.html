@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load product_tags %}
 {% block title %}Home{% endblock %}
 
 {% block extra_head %}
@@ -10,23 +11,37 @@
 <div class="container">
   <div class="row">
 
-      <div class="col-md-8">
+      <div class="col-md-3">
       {% if root_categories %}
+        <h4>Categories</h4><hr />
         {% for item in root_categories %}
-          <h3>{{item.name}}</h3>
-          <p>{{item.short_content}}</p>
-          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a>  
+        <div class="row">
+          <h4><a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">{{item.name}}</a></h4>
+        </div>
         {% endfor %}
       {% endif %} 
       </div>
 
-      <div class="col-md-4">
+
+      <div class="col-md-9">
       {% if featured_products %}
-        {% for item in featured_products %}
-          <h3>{{item.name}}</h3>
-          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a>
+        <h4>Featured Products</h4><hr />
+        {% for row in featured_products|partition_horizontal:"3" %}
+          <div class="row">
+          {% for item in row %}
+          <div class="col-md-4">
+            <h5>{{item.name}}</h5>
+
+{% with item.productimage_set.all|first as im %}
+            <img class="img-responsive" src="/media/{{im.image}}" alt="category-image" />
+{% endwith %}
+
+            <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a>
+          </div>
+          {% endfor %}
+        </div>
         {% endfor %}
-      {% endif %}
+        {% endif %}
       </div>
 
     </div><!-- End Row -->
