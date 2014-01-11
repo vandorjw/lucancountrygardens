@@ -106,6 +106,12 @@ STATICFILES_FINDERS = (
 ########## END STATIC FILE CONFIGURATION
 
 
+########## MEDIA CONFIGURATION
+MEDIA_ROOT = '/var/sites/ca/lucancountrygardens/media'
+MEDIA_URL = '/media/'
+########## END MEDIA CONFIGURATION
+
+
 ########## TEMPLATE CONFIGURATION
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',

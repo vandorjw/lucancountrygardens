@@ -8,12 +8,41 @@
 {% block content %}
 
 <div class="container">
-  <!-- Jumbotron -->
-  <div class="jumbotron">
-    {% for slide in jumbotron %}
-      <p class="lead">{{slide}}</p>
-    {% endfor %}
-  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+
+      <ol class="carousel-indicators">
+      {% for slide in jumbotron %}
+        <li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
+      {% endfor %}
+      </ol>
+
+      <div class="carousel-inner">
+      {% for item in jumbotron %}
+        <div class="item {% if forloop.first %}active{% endif %}">
+          <img class="img-responsive" src="media/{{item.image}}" alt="{{item.caption}}" />
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>{{item.headline}}</h1>
+              <p>{{item.caption}}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+        
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+    </div><!-- /.col-md-8 offset-2 -->
+  </div><!-- /.row -->
+
 
   <div class="row">
       <div class="col-md-4">

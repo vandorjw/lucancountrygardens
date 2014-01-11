@@ -2,6 +2,7 @@ from django.db import models
 
 class Slide(models.Model):
     image = models.ImageField(upload_to="jumbotron/", blank=True, null=True)
+    headline = models.CharField( max_length=255, blank=True )
     caption = models.CharField( max_length=255, blank=True )
     sort = models.IntegerField( default=0 )
     is_active = models.BooleanField( default=True )
