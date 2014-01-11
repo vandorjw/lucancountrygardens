@@ -8,8 +8,14 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    {% for slide in jumbotron %}
+      <p class="lead">{{slide}}</p>
+    {% endfor %}
+  </div>
 
+  <div class="row">
       <div class="col-md-4">
       {% if root_categories %}
         <h2><a href="{% url 'product:category_list' %}">Categories</a></h2>

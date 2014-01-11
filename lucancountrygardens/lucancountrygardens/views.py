@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from product.models import Category
 from about.models import About
 from gallery.models import Gallery
+from jumbotron.models import Slide
 
 class HomePageView(TemplateView):
     template_name="home_page.html"
@@ -11,7 +12,7 @@ class HomePageView(TemplateView):
         context['root_categories'] = Category.objects.filter(is_active=True).filter(parent=None)
         context['about_pages'] = About.objects.filter(is_active=True)
         context['galleries'] = Gallery.objects.filter(is_active=True).filter(is_featured=True)
-        #context['banners'] = _some_model_.objects.filter(is_active=True)
+        context['jumbotron'] = Slide.objects.filter(is_active=True)
         return context
         
 

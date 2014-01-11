@@ -38,6 +38,7 @@ EXTERNAL_APPS = (
 )
 
 LOCAL_APPS = (
+    'jumbotron',
     'product',
     'gallery',
     'about',
@@ -77,7 +78,7 @@ EMAIL_HOST_PASSWORD = PROJECT_EMAIL_PASS
 EMAIL_HOST_USER = PROJECT_EMAIL_USER
 EMAIL_HOST = PROJECT_EMAIL_HOST
 EMAIL_PORT = PROJECT_EMAIL_PORT
-EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
+EMAIL_SUBJECT_PREFIX = 'lucancountrygardens'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
@@ -141,3 +142,5 @@ HAYSTACK_CONNECTIONS = {
          'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
