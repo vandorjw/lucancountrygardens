@@ -1,48 +1,45 @@
 {% extends "base.html" %}
+{% load product_tags %}
 
-{% block title %}{{ about }}{% endblock %}
-{% block meta_description %}{{ about.meta_description }}{% endblock %}
-{% block meta_keywords %}{{ about.meta_description }}{% endblock %}
+{% block title %}{{ gallery }}{% endblock %}
+{% block meta_description %}{{ gallery.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ gallery.meta_description }}{% endblock %}
 
 {% block extra_head %}
   <meta name="robots" content="index,follow">
 {% endblock %}
 
-
 {% block content %}
-<div class="row">
-  <div class="container">
-    <div class="col-md-12">
+<div class="container">
 
-      <h3>{{about.name}}</h3>
+<div class="page-header">
 
- 
+<ol class="breadcrumb">
+  <li><a href="{% url 'gallery:gallery_list' %}">Galleries</a></li>
+  <li>{{ gallery }}</li>
+</ol>  
 
-    </div>
-
-  </div>
-</div>	
-
-{% for section in sections %}
-<div class="row">
-    <div class="col-md-12">
-      <h4>{{section.section_header}}</h4>
-    </div>
+<p>{{gallery.description|safe}}</p>
 </div>
 
-<div class="row">
 
-    <div class="col-md-8 {% cycle 'pull-right' 'pull-left' %}">
-      <p>{{section.article_section}}</p>
+{% if gallery.galleryimage_set.all %}
+  {% for row in gallery.galleryimage_set.all|partition_horizontal:"4" %}
+    <div class="row">
+      {% for item in row %}
+        <div class="col-md-3">
+           <div class="panel panel-default">
+              <div class="panel-body">
+                <h4 class="text-center">{{item}}</h4>
+                  <img class="img-responsive" src="/media/{{ item.image }}" title="{{ item }}" alt="{{ item }}" />
+              </div>
+          </div>
+        </div>
+     {% endfor %}
     </div>
-
-    <div class="col-md-4 {% cycle 'pull-left' 'pull-right' %}">
-      {{ section.image }}
-    </div>
-
+    {% endfor %}
+{% endif %}
 </div>
-
-{% endfor %}				
 
 {% endblock %}
 
