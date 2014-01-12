@@ -1,7 +1,6 @@
 from django.views.generic import TemplateView
 from product.models import Category
-from about.models import About
-from gallery.models import Gallery
+from product.models import Product
 from jumbotron.models import Slide
 
 class HomePageView(TemplateView):
@@ -10,8 +9,7 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['root_categories'] = Category.objects.filter(is_active=True).filter(parent=None)
-        context['about_pages'] = About.objects.filter(is_active=True)
-        context['galleries'] = Gallery.objects.filter(is_active=True).filter(is_featured=True)
+        context['featured_products'] = Product.objects.filter(is_featured=True)
         context['jumbotron'] = Slide.objects.filter(is_active=True)
         return context
         

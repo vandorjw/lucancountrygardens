@@ -8,7 +8,6 @@ class Gallery(models.Model):
     meta_description = models.CharField( max_length=255, blank=True )
     meta_keywords = models.CharField( max_length=255, blank=True )
     is_active = models.BooleanField( default=True )
-    is_featured = models.BooleanField( default=False )
 
     class Meta:
         app_label = 'gallery'
@@ -23,10 +22,10 @@ class Gallery(models.Model):
         
 
 class GalleryImage(models.Model):
-    product = models.ForeignKey('Gallery')
+    gallery = models.ForeignKey('Gallery')
     image = models.ImageField(upload_to="gallery/", blank=True, null=True)
     caption = models.CharField( max_length=255, blank=True)
-    sort = models.IntegerField( default=0, unique=True )
+    sort = models.IntegerField( default=0 )
 
     class Meta:
         app_label = 'gallery'

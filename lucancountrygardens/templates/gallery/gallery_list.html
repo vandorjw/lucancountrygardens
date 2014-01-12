@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load product_tags %}
 {% block title %}Gallery{% endblock %}
 
 {% block extra_head %}
@@ -10,23 +10,25 @@
 
 <div class="container">
 {% if object_list %}  
-    {% for item in object_list %}
-        <div class="row">
-            <div class="col-md-3">
-                <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="text-center">{{item.name}}</h4>
-                    </div>
-                    <div class="panel-body">
-                        {% with item.galleryimage_set.all|first as image %}
-                            <img src="{{ image }}" title="{{ item.name }}" alt="{{ item.name }}" />
-                        {% endwith %}
-                    </div>
-                </div>
-                </a>
-            </div>
+  {% for row in object_list|partition_horizontal:"4" %}
+    <div class="row">
+      {% for item in row %}
+        <div class="col-md-3">
+
+           <div class="panel panel-default">
+            <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
+              <div class="panel-body">
+                <h4 class="text-center">{{item.name}}</h4>
+                {% with item.galleryimage_set.all|first as image %}
+                  <img src="{{ image }}" title="{{ item.name }}" alt="{{ item.name }}" />
+                {% endwith %}
+              </div>
+            </a>
+          </div>
+
         </div>
+     {% endfor %}
+    </div>
     {% endfor %}
 {% endif %}
 </div>

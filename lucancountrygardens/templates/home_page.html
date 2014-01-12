@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
-
+{% load product_tags %}
 {% block extra_head %}
 <meta name="robots" content="index,follow">
 {% endblock %}
@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
 
     <!-- Carousel
     ================================================== -->
@@ -43,42 +43,63 @@
     </div><!-- /.col-md-8 offset-2 -->
   </div><!-- /.row -->
 
-
   <div class="row">
-      <div class="col-md-4">
-      {% if root_categories %}
-        <h2><a href="{% url 'product:category_list' %}">Categories</a></h2>
-        {% for item in root_categories %}
-          <h3>{{item.name}}</h3>
-          <p>{{item.short_content}}</p>
-          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
-        {% endfor %}
-      {% endif %} 
-      </div>
+    <h4>Welcome to Lucan Country Gardens</h4>
+    <p>We are located on Highway 4, between the city of London, and the town of Exeter. Please see our contact page for more details and a map on how to find us. We carry a large range of products that we wish to share with you. Here are some quick links to get you started:</p>
+  </div>
 
-      <div class="col-md-4">
-      {% if about_pages %}
-        <h2><a href="{% url 'about:about_list' %}">About</a></h2>
-        {% for item in about_pages %}
-          <h3>{{item.name}}</h3>
-          <p>{{item.short_content}}</p>
-          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
-        {% endfor %}
-      {% endif %} 
-      </div>
+  {% if root_categories %}
+  <div class="row">
+    <h4>Categories</h4>
+  </div>
 
-      <div class="col-md-4">
-      {% if galleries %}
-        <h2><a href="{% url 'gallery:gallery_list' %}">Galleries</a></h2>
-        {% for item in galleries %}
-          <h3>{{item.name}}</h3>
-          <p>{{item.short_content}}</p>
-          <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
-        {% endfor %}
-      {% endif %} 
-      </div>
+    {% for row in root_categories|partition_horizontal:"4" %}
+      <div class="row">
+        {% for item in row %}
+          <div class="col-md-3">
 
-    </div><!-- End Row -->
+           <div class="panel panel-default">
+            <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
+              <div class="panel-body">
+                <h4 class="text-center">{{item.name}}</h4>
+                <img class="img-responsive" src="/media/{{item.image}}" alt="category-image" />
+              </div>
+            </a> 
+          </div>
+
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% endif %} 
+
+
+  {% if featured_products %}
+  <div class="row">
+    <h4>Featured Products</h4>
+  </div>
+    {% for row in featured_products|partition_horizontal:"4" %}
+      <div class="row">
+        {% for item in row %}
+          <div class="col-md-3">
+
+           <div class="panel panel-default">
+            <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
+              <div class="panel-body">
+                <h4 class="text-center">{{item.name}}</h4>
+                {% with item.productimage_set.all|first as im %}
+                <img class="img-responsive" src="/media/{{im.image}}" alt="category-image" />
+                {% endwith %}
+              </div>
+            </a> 
+          </div>
+
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% endif %} 
+
 </div><!-- End Container -->
 
 {% endblock content %}
