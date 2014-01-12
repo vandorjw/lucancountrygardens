@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load product_tags %}
 
 {% block title %}{{ category }}{% endblock %}
 {% block meta_description %}{{ category.meta_description }}{% endblock %}
@@ -9,38 +9,56 @@
   <meta name="robots" content="index,follow">
 {% endblock %}
 
-
 {% block content %}
 <div class="container">
-  <div class="page-header">
-    <h4>Return to: <a href="{% url 'product:category_list' %}">Product Index</a></h4>
-  </div>
-<div class="row">
-<h3>SubCategories</h3>
 
-{% for subcat in subcategories %}
-  {% if forloop.first %}
-    <p><a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
-  {% elif forloop.last %}
-    <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
-  {% else %}
-    <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>,
+<div class="page-header">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'product:category_list' %}">Categories</a></li>
+    {% if category.parent %}
+    <li><a href="{{category.parent.get_absolute_url}}">{{category.parent}}</a></li>
+    {% endif %}
+    <li>{{ category }}</li>
+  </ol>
+
+  {% if subcategories %}
+  <p><span class="">Sub-Categories</span>
+  {% for subcat in subcategories %}
+    {% if forloop.first %}
+      <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
+    {% elif forloop.last %}
+      <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>
+    {% else %}
+      <a href="{{subcat.get_absolute_url}}">{{subcat}}</a>,
+    {% endif %}
+  {% endfor %}
+  </p>
   {% endif %}
-{% endfor %}</p>
-</div>
 
-<div class="row">
-<h4>Products</h4>
-{% for product in category_products %}
-<div class="col-md-3">
-  {% with product.productimage_set.all|first as im %}
-    <img class="" src="{{ im.url }}" title="{{ product.name }}" alt="{{ product.name }}" />
-  {% endwith %}
-  <p><a href="{{product.get_absolute_url}}">{{product}}</a></p>
-</div>
+</div><!-- ./page-header -->
 
-{% endfor %}
-</div>
+  {% if category_products %}
+  {% for row in category_products|partition_horizontal:"4"  %}
+  <div class="row">
+    {% for product in row %}
+    <div class="col-md-3">
+    <div class="panel panel-default">
+      <a href="{{product.get_absolute_url}}">
+      <div class="panel-header">
+        <h4 class="text-center">{{product}}</h4>
+      </div>
+      <div class="panel-body">
+        {% with product.productimage_set.all|first as im %}
+        <img class="img-responsive" src="/media/{{ im.image }}" title="{{ item }}" alt="{{ item }}" />
+        {% endwith %}
+      </div>
+      </a>
+    </div><!-- ./panel -->
+    </div><!-- ./col-md-3 -->
+    {% endfor %}
+  </div><!-- ./row -->
+  {% endfor %}
+  {% endif %}
 
 </div>
 {% endblock %}

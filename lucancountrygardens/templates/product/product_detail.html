@@ -12,22 +12,26 @@
 
 {% block content %}
 <div class="container">
+
   <div class="page-header">
-    <p>Return to: <a href="{{object.category.get_absolute_url}}">{{object.category}}</a></p>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'product:category_list' %}">Categories</a></li>
+      <li><a href="{{object.category.get_absolute_url}}">{{object.category}}</a></li>
+      <li>{{ product }}</li>
+    </ol>
   </div>
+
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-4">
     {% if product.productimage_set.all %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-
       <ol class="carousel-indicators">
       {% for slide in product.productimage_set.all %}
         <li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
       {% endfor %}
       </ol>
-
       <div class="carousel-inner">
       {% for item in product.productimage_set.all %}
         <div class="item {% if forloop.first %}active{% endif %}">
@@ -39,8 +43,7 @@
             </div>
           </div>
         </div>
-      {% endfor %}
-        
+      {% endfor %}        
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -49,13 +52,15 @@
     <p>No Image Available</p>
     {% endif %}
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-8">
       <h3>{{product}}</h3>     
       <p>{{product.description|safe}}</p>
       <p>Price: ${{product.price}}</p>
     </div>
-  </div>
-</div>
+
+  </div><!-- ./row -->
+</div><!-- ./container -->
 {% endblock %}
 
 

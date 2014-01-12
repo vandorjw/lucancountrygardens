@@ -11,20 +11,29 @@
   <div class="row">
     <div class="col-md-5">
       <h3>Lucan Country Gardens</h3>
-      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
 
-<p>It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. 
+Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+
+<p>It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One 
+day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
       </div>
 
       <div class="col-md-7">
       {% if object_list %}  
       {% for item in object_list %}
-   
-        <h3>{{item.name}}</h3>
-
-        <p>{{item.short_content}}</p>
-        <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
-        
+         <div class="row">
+           <div class="col-md-2">
+             <img class="img-responsive img-circle" src="/media/{{ item.image }}" title="{{ item }}" alt="img-responsive" />
+           </div>
+           <div class="col-md-10">
+             <h3>{{item.name}}</h3>
+             <p>{{item.short_content}}</p>
+             <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a> 
+          </div>
+        </div>
       {% endfor %}
       {% endif %} 
       </div>

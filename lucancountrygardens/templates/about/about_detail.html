@@ -11,42 +11,41 @@
 
 {% block content %}
 <div class="container">
+
 <div class="page-header">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'about:about_list' %}">About</a></li>
+    <li>{{ about }}</li>
+  </ol>  
 </div>
-  
-<div class="row">
-
-    <div class="col-md-12">
-
-      <h3>{{about.name}}</h3>
 
  
-
+<div class="row">
+    <div class="col-md-12">
+      <h3>{{about.name}}</h3>
     </div>
+</div>
 
-  </div>
-</div>	
 
 {% for section in sections %}
-<div class="row">
+
+  <div class="row">
     <div class="col-md-12">
       <h4>{{section.section_header}}</h4>
     </div>
-</div>
+  </div>
 
-<div class="row">
-
+  <div class="row">
     <div class="col-md-8 {% cycle 'pull-right' 'pull-left' %}">
-      <p>{{section.article_section}}</p>
+      <p>{{section.article_section|safe}}</p>
     </div>
-
     <div class="col-md-4 {% cycle 'pull-left' 'pull-right' %}">
-      {{ section.image }}
+      <img class="img-responsive" src="/media/{{ section.image }}" alt="responsive-image" />
     </div>
-
-</div>
+  </div>
 
 {% endfor %}				
 
+</div>
 {% endblock %}
 

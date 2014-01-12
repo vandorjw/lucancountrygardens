@@ -22,29 +22,32 @@
       {% endif %} 
       </div>
 
-
       <div class="col-md-9">
-      {% if featured_products %}
+        {% if featured_products %}
         <h4>Featured Products</h4><hr />
-        {% for row in featured_products|partition_horizontal:"3" %}
+        {% for row in featured_products|partition_horizontal:"4" %}
           <div class="row">
-          {% for item in row %}
-          <div class="col-md-4">
-            <h5>{{item.name}}</h5>
-
-{% with item.productimage_set.all|first as im %}
-            <img class="img-responsive" src="/media/{{im.image}}" alt="category-image" />
-{% endwith %}
-
-            <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">Continue Reading...</a>
-          </div>
-          {% endfor %}
-        </div>
+            {% for product in row %}
+              <div class="col-md-3">
+                <div class="panel panel-default">
+                  <a href="{{product.get_absolute_url}}">
+                  <div class="panel-header">
+                    <h4 class="text-center">{{product}}</h4>
+                  </div>
+                  <div class="panel-body">
+                    {% with product.productimage_set.all|first as im %}
+       	              <img class="img-responsive" src="/media/{{ im.image }}" title="{{ item }}" alt="{{ item }}" />
+                    {% endwith %}
+                  </div>
+                  </a>
+                </div><!-- ./panel -->
+              </div><!-- ./col-md-3 -->
+            {% endfor %}
+          </div><!-- ./row -->
         {% endfor %}
         {% endif %}
-      </div>
-
-    </div><!-- End Row -->
+      </div><!-- ./col-md-9-->
+</div><!-- ./row -->
 </div><!-- End Container -->
 
 {% endblock content %}

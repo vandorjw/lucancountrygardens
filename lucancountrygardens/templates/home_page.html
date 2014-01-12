@@ -45,7 +45,10 @@
 
   <div class="row">
     <h4>Welcome to Lucan Country Gardens</h4>
-    <p>We are located on Highway 4, between the city of London, and the town of Exeter. Please see our contact page for more details and a map on how to find us. We carry a large range of products that we wish to share with you. Here are some quick links to get you started:</p>
+    <p>
+We are located on Highway 4, between the city of London, and the town of Exeter. 
+See our <a href="{% url 'contact:contact_page' %}">contact page</a> for more details and a map on how to find us. 
+We carry a large variety of producs for all your garden needs. Here are some quick links to get you started:</p>
   </div>
 
   {% if root_categories %}
@@ -62,7 +65,7 @@
             <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
               <div class="panel-body">
                 <h4 class="text-center">{{item.name}}</h4>
-                <img class="img-responsive" src="/media/{{item.image}}" alt="category-image" />
+                <img class="img-responsive hidden-xs" src="/media/{{item.image}}" alt="category-image" />
               </div>
             </a> 
           </div>
@@ -81,14 +84,14 @@
     {% for row in featured_products|partition_horizontal:"4" %}
       <div class="row">
         {% for item in row %}
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-3">
 
            <div class="panel panel-default">
             <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
               <div class="panel-body">
                 <h4 class="text-center">{{item.name}}</h4>
                 {% with item.productimage_set.all|first as im %}
-                <img class="img-responsive" src="/media/{{im.image}}" alt="category-image" />
+                <img class="img-responsive hidden-xs" src="/media/{{im.image}}" alt="category-image" />
                 {% endwith %}
               </div>
             </a> 
