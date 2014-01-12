@@ -36,6 +36,13 @@
   {% endif %}
 
 </div><!-- ./page-header -->
+<div class="row">
+<h4>Description</h4>
+  <div class="col-md-10 col-md-offset-1">
+    <p>{{category.description|safe}}</p>
+    <hr />
+  </div>
+</div>
 
   {% if category_products %}
   {% for row in category_products|partition_horizontal:"4"  %}

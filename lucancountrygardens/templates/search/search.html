@@ -1,25 +1,52 @@
 {% extends 'base.html' %}
+{% load product_tags %}
+
+{% block title %}{{query}} Search Results{% endblock %}
 
 {% block content %}
-        {% if query %}
-            <h3>Results</h3>
+<div class="container">
 
-            {% for result in page.object_list %}
-                <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
-                </p>
-            {% empty %}
-                <p>No results found.</p>
-            {% endfor %}
+<div class="page-header">
+  <h3>Search Results</3>
+</div>
 
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-        {% else %}
- <p>something else</p>
-        {% endif %}
+
+  {% if query %}    
+  {% for row in page.object_list|partition_horizontal:"4" %}
+  <div class="row">
+    {% for result in row %}
+    <div class="col-md-3">
+    <div class="panel panel-default">
+      <a href="{{result.object.get_absolute_url}}">
+      <div class="panel-header">
+        <h4 class="text-center">{{result.object}}</h4>
+      </div>
+      <div class="panel-body">
+        {% with result.object.productimage_set.all|first as im %}
+        <img class="img-responsive" src="/media/{{ im.image }}" title="{{ item }}" alt="{{ item }}" />
+        {% endwith %}
+      </div>
+      </a>
+    </div><!-- ./panel -->
+    </div><!-- ./col-md-3 -->
+    {% endfor %}
+  </div><!-- ./row -->
+  {% endfor %}
+
+    {% if page.has_previous or page.has_next %}
+    <div>
+    {% if page.has_previous %}
+      <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">
+    {% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+    |
+    {% if page.has_next %}
+      <a href="?q={{ query }}&amp;page={{ page.next_page_number }}">
+    {% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+    </div>
+    {% endif %}
+  {% else %}
+  <p>You did not search for anything.</p>
+  {% endif %}
+
+</div>
 {% endblock %}
