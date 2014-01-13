@@ -8,21 +8,26 @@
 {% block content %}
 
 <div class="container">
+
+<div class="page-header">
+  <h2 class="text-center">(519) 227-1716 -- lucancountrygardens@live.ca</h2>
+</div>
+
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
       <h3>Lucan Country Gardens</h3>
       <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
 
 <p>It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-4">
       {% if object_list %}  
       <h3>Hours of Operation</h3>
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
+    <th>Day</th>
+    <th>Store Hours</th>
   </tr>
       {% for item in object_list %}
   <tr>
@@ -35,7 +40,14 @@
       {% endif %} 
       </div>
 
+
+<div class="col-md-4">
+  <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?t=m&amp;q=lucan+country+gardens&amp;ie=UTF8&amp;hq=country+gardens&amp;hnear=Lucan,+Middlesex+County,+Ontario&amp;ll=43.207803,-81.45298&amp;spn=0.043792,0.072956&amp;z=13&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.ca/maps?t=m&amp;q=lucan+country+gardens&amp;ie=UTF8&amp;hq=country+gardens&amp;hnear=Lucan,+Middlesex+County,+Ontario&amp;ll=43.207803,-81.45298&amp;spn=0.043792,0.072956&amp;z=13&amp;iwloc=A&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+</div>
+
     </div><!-- End Row -->
+
+
 </div><!-- End Container -->
 
 {% endblock content %}
