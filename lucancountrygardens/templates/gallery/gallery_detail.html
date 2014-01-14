@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load product_tags %}
+{% load product_tags thumbnail %}
 
 {% block title %}{{ gallery }}{% endblock %}
 {% block meta_description %}{{ gallery.meta_description }}{% endblock %}
@@ -31,7 +31,13 @@
            <div class="panel panel-default">
               <div class="panel-body">
                 <h4 class="text-center">{{item}}</h4>
-                  <img class="img-responsive" src="/media/{{ item.image }}" title="{{ item }}" alt="{{ item }}" />
+                {% thumbnail item.image "1000" as big %}
+                  {% thumbnail item.image "250" crop="center" as small %}
+                    <a href="{{ big.url}}" title="look ma!">
+                      <img class="img-responsive" src="{{ small.url }}" title="{{ item }}" alt="thumbnail">
+                    </a>
+                  {% endthumbnail %}
+                {% endthumbnail %}
               </div>
           </div>
         </div>

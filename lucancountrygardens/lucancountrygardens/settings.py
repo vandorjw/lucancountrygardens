@@ -19,6 +19,7 @@ from .secrets import PROJECT_EMAIL_PASS
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = True
+THUMBNAIL_DEBUG = True
 ALLOWED_HOSTS = ['lucancountrygardens.ca',]
 
 EXTERNAL_APPS = (
@@ -35,6 +36,7 @@ EXTERNAL_APPS = (
     'crispy_forms',
     'tinymce',
     'south',
+    'sorl.thumbnail',
 )
 
 LOCAL_APPS = (

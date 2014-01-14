@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.contrib.admin import BooleanFieldListFilter
+from sorl.thumbnail.admin import AdminImageMixin
 
 from gallery.models import Gallery
 from gallery.models import GalleryImage
 
-class GalleryImage_Inline(admin.TabularInline):
+class GalleryImage_Inline(AdminImageMixin, admin.TabularInline):
     model = GalleryImage
     extra = 1
 

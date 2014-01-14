@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load product_tags %}
+{% load product_tags thumbnail %}
+
 {% block title %}Gallery{% endblock %}
 
 {% block extra_head %}
@@ -24,18 +25,16 @@ If you see any pictures of which you would like to have the HD version, just sto
     <div class="row">
       {% for item in row %}
         <div class="col-md-3">
-
            <div class="panel panel-default">
             <a href="{{ item.get_absolute_url }}" title="{{ item.name }}" target="_self">
               <div class="panel-body">
                 <h4 class="text-center">{{item.name}}</h4>
-                {% with item.galleryimage_set.all|first as im %}
-                  <img class="img-responsive" src="/media/{{ im.image }}" title="{{ item.name }}" alt="{{ item.name }}" />
-                {% endwith %}
+{% thumbnail item.galleryimage_set.all|first "1000" as im %}
+    <img class="img-responsive" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %}
               </div>
             </a>
           </div>
-
         </div>
      {% endfor %}
     </div>
